@@ -18,7 +18,7 @@ public class MainForm extends javax.swing.JFrame
     {
         initComponents();
         
-        this.milliseconds = 500;
+        this.milliseconds = 250;
     }
     
     private Timer startThread( JProgressBar pb, int t )
@@ -31,7 +31,11 @@ public class MainForm extends javax.swing.JFrame
             @Override
             public void run() 
             {
-                pb.setValue( pb.getValue() + random.nextInt( 10 ) );
+                if ( pb.getValue() < 100 )  {
+                    pb.setValue( pb.getValue() + random.nextInt( 10 ) );
+                } else {
+                    pb.setValue( 0 );
+                }
             }
         }, 0, t);
         
